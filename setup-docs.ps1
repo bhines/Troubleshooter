@@ -83,7 +83,11 @@ $folders = @(
   'Rico\TINY\TINY PC2\Schematics',
   'Rico\TINY\TINY PLUS',
   'Rico\TINY\TINY PLUS\Manuals',
-  'Rico\TINY\TINY PLUS\Schematics'
+  'Rico\TINY\TINY PLUS\Schematics',
+  'Streicher',
+  'Streicher\HF200',
+  'Streicher\HF200\Manuals',
+  'Streicher\HF200\Schematics'
 )
 
 $docs = @(
@@ -246,6 +250,15 @@ $docs = @(
   'Rico\Highlander\MTS-ED control unit\Schematics\Verdrahtungsplan Frontplatte MTS-ED.pdf',
   'Rico\Highlander\MTS-ED control unit\Schematics\MTS Platine Schalt- und Layout MTS-versorgung.pdf',
   'Rico\Highlander\MTS-ED control unit\Schematics\Schaltpan und Layout Platine MTSVERSx.pdf',
+  'Streicher\HF200\Manuals\User manual HF200.pdf',
+  'Streicher\HF200\Manuals\A.drift.veiledning.pdf',
+  'Streicher\HF200\Manuals\B.drift.veiledning.pdf',
+  'Streicher\HF200\Manuals\D.kamera.pdf',
+  'Streicher\HF200\Manuals\E.kontrollpult.pdf',
+  'Streicher\HF200\Schematics\C.skjema.streicher.pdf',
+  'Streicher\HF200\Schematics\721 14 79A Stirnradgetriebe.idw.pdf',
+  'Streicher\HF200\Schematics\721 14 81A Drehstück und Bedruckungsventil (2).pdf',
+  'Streicher\HF200\Schematics\721 22 20A Kameragehäuse komplett (1).pdf',
   'Cosmic\C120\Manuals\22596_C120 manual.pdf',
   'Rico\TINY\Shared\Schematics\Mechanikeinheit TINY PC-PLUS 9520.017287.pdf'
 )

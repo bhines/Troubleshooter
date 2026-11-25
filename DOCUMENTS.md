@@ -1,6 +1,6 @@
 # Document checklist
 
-Every file the app links to, grouped by folder (161 files). Layout: `<Maker>/<Family>/<Model>/Manuals` or `Schematics`. `Shared` holds documents used by several models of that family. File names are the manufacturers' originals and must match exactly, including upper/lower case and spaces.
+Every file the app links to, grouped by folder (170 files). Layout: `<Maker>/<Family>/<Model>/Manuals` or `Schematics`. `Shared` holds documents used by several models of that family. File names are the manufacturers' originals and must match exactly, including upper/lower case and spaces.
 
 `setup-docs.ps1` creates these folders and an `Unsorted` folder. Drop PDFs into `Unsorted` (subfolders are fine), run it again, and it moves each known file to its place. The "was" line under each file is where the app used to expect it, which may help you recognise it.
 
@@ -412,3 +412,27 @@ Every file the app links to, grouped by folder (161 files). Layout: `<Maker>/<Fa
   was: `Unsorted/Rico/MTS Platine Schalt- und Layout MTS-versorgung.pdf`
 - [ ] `Schaltpan und Layout Platine MTSVERSx.pdf`: MTSVERSx board — schematic & layout, DE  
   was: `Unsorted/Rico/Schaltpan und Layout Platine MTSVERSx.pdf`
+
+## Streicher/HF200/Manuals/
+
+- [ ] `User manual HF200.pdf`: HF200 user manual (II/2012), EN  
+  was: `Unsorted/Streicher/wetransfer_user-manual-hf200-hf130_2023-05-09_0637/User manual HF200.pdf`
+- [ ] `A.drift.veiledning.pdf`: Operating guide A (driftsveiledning), NO  
+  was: `Unsorted/Streicher/misc/A.drift.veiledning.pdf`
+- [ ] `B.drift.veiledning.pdf`: Operating guide B (driftsveiledning), NO  
+  was: `Unsorted/Streicher/misc/B.drift.veiledning.pdf`
+- [ ] `D.kamera.pdf`: Camera (D), NO  
+  was: `Unsorted/Streicher/misc/D.kamera.pdf`
+- [ ] `E.kontrollpult.pdf`: Control desk (E, kontrollpult), NO  
+  was: `Unsorted/Streicher/misc/E.kontrollpult.pdf`
+
+## Streicher/HF200/Schematics/
+
+- [ ] `C.skjema.streicher.pdf`: Schematics (C, skjema), NO  
+  was: `Unsorted/Streicher/misc/C.skjema.streicher.pdf`
+- [ ] `721 14 79A Stirnradgetriebe.idw.pdf`: Spur gear (721 14 79A), DE  
+  was: `Unsorted/Streicher/misc/721 14 79A Stirnradgetriebe.idw.pdf`
+- [ ] `721 14 81A Drehstück und Bedruckungsventil (2).pdf`: Rotary piece and pressurising valve (721 14 81A), DE  
+  was: `Unsorted/Streicher/misc/721 14 81A Drehstück und Bedruckungsventil (2).pdf`
+- [ ] `721 22 20A Kameragehäuse komplett (1).pdf`: Camera housing complete (721 22 20A), DE  
+  was: `Unsorted/Streicher/misc/721 22 20A Kameragehäuse komplett (1).pdf`

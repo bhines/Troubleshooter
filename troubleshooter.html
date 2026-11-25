@@ -251,7 +251,7 @@
    File names are the manufacturers' original names. setup-docs.ps1 builds this layout.
    Folder names must match exactly (upper/lower case matters on phones). */
 const DOC_BASE = "";                 // extra prefix in front of everything, normally empty
-const FOLDERS = { rico:"Rico", ims:"IMS", cosmic:"Cosmic", dancutter:"Dancutter" };
+const FOLDERS = { rico:"Rico", ims:"IMS", cosmic:"Cosmic", dancutter:"Dancutter", streicher:"Streicher" };
 
 /* ---------- MANUFACTURERS & MODELS ----------
    Rico model list = every model found in the project files (Nov 2026).
@@ -311,6 +311,12 @@ const MAKERS = [
   { id:"dancutter", name:"Dancutter", type:"cutter", desc:"Pneumatic robotic cutters", site:"https://www.dancutter.com",
     models:[ {id:"dc_superflex", name:"DC Super Flex"}, {id:"dc_minibike", name:"DC Mini Bike"} ],
     accessories:["Control Unit 2.0","Air motor","Hose drum","Cutting tools & bits","GOLD toolbox"]
+  },
+  { id:"streicher", name:"Streicher", type:"cutter", desc:"Hydraulic milling robots (vehicle-mounted)",
+    models:[
+      {id:"str_hf200", name:"HF200", group:"Hydraulic milling robot", src:"Streicher Kanalsysteme user manual HF200 (II/2012). Built into a vehicle with hydraulic unit, compressor, water tank, hose drum and slewing crane."}
+    ],
+    accessories:["Hydraulic unit","Compressed air system (compressor, filter unit, distribution cabinet)","Water tank","Hose drum","Slewing crane ABUS GM2 160.8-1","Bracing device","TV camera"]
   }
 ];
 
@@ -322,6 +328,7 @@ const CARDS = {
   rico:      { bar:"push-rod · mobile",   spec:{title:"TINY|PC.3", lines:["Reel 22 / 60 / 100 m","Max. cable 100 m","Monitor 12.1\" touch","Supply 100–240 V AC","Protection IP54"]}},
   ims:       { bar:"lateral · main-line", spec:{title:"DRIVEplus", lines:["DN 150 – DN 600","MICRO S · NANO E","DRIVE E · CLIMBOLINO E","MICROpremium flex"]}},
   cosmic:    { bar:"cutters · top hat",   spec:{title:"COSMIC",    lines:["Cutter crawler","LED lighting","Top Hat systems","C120 FA E · Eliminator"]}},
+  streicher: { bar:"hydraulic",          spec:{title:"HF200",     lines:["DN 200 – DN 600","Milling motor 1.5 kW","2100 rpm","Max. 130 bar","Approx. 90 kg"]}},
   dancutter: { bar:"pneumatic",           spec:{title:"DANCUTTER", lines:["Hose reel + lubricator","Air filter / regulator","DC Super Flex","DC Mini Bike"]}}
 };
 
@@ -513,6 +520,17 @@ const DOCS = [
   {m:["hl_mtsed"], k:"schematic", t:"MTS supply board — schematic & layout", lang:"DE", f:"Highlander/MTS-ED control unit/Schematics/MTS Platine Schalt- und Layout MTS-versorgung.pdf"},
   {m:["hl_mtsed"], k:"schematic", t:"MTSVERSx board — schematic & layout", lang:"DE", f:"Highlander/MTS-ED control unit/Schematics/Schaltpan und Layout Platine MTSVERSx.pdf"},
 
+  /* ===== STREICHER HF200 ===== */
+  {m:["str_hf200"], k:"manual", t:"HF200 user manual (II/2012)", lang:"EN", f:"HF200/Manuals/User manual HF200.pdf", note:"Hydraulics 3, air 4, water tank 5, crane 6, control cabinets 7, camera 8, robot 9 (LEDs 9.6, drive motor removal 9.7, daily/weekly checks 9.10–9.13)."},
+  {m:["str_hf200"], k:"manual", t:"Operating guide A (driftsveiledning)", lang:"NO", f:"HF200/Manuals/A.drift.veiledning.pdf", check:"Norwegian set A–E from 2018 — confirm it is for this HF200 vehicle."},
+  {m:["str_hf200"], k:"manual", t:"Operating guide B (driftsveiledning)", lang:"NO", f:"HF200/Manuals/B.drift.veiledning.pdf", check:"Norwegian set A–E from 2018 — confirm it is for this HF200 vehicle."},
+  {m:["str_hf200"], k:"manual", t:"Camera (D)", lang:"NO", f:"HF200/Manuals/D.kamera.pdf", check:"Norwegian set A–E from 2018 — confirm it is for this HF200 vehicle."},
+  {m:["str_hf200"], k:"manual", t:"Control desk (E, kontrollpult)", lang:"NO", f:"HF200/Manuals/E.kontrollpult.pdf", check:"Norwegian set A–E from 2018 — confirm it is for this HF200 vehicle."},
+  {m:["str_hf200"], k:"schematic", t:"Schematics (C, skjema)", lang:"NO", f:"HF200/Schematics/C.skjema.streicher.pdf", check:"Norwegian set A–E from 2018 — confirm it is for this HF200 vehicle."},
+  {m:["str_hf200"], k:"schematic", t:"Spur gear", pn:"721 14 79A", lang:"DE", f:"HF200/Schematics/721 14 79A Stirnradgetriebe.idw.pdf"},
+  {m:["str_hf200"], k:"schematic", t:"Rotary piece and pressurising valve", pn:"721 14 81A", lang:"DE", f:"HF200/Schematics/721 14 81A Drehstück und Bedruckungsventil (2).pdf"},
+  {m:["str_hf200"], k:"schematic", t:"Camera housing complete", pn:"721 22 20A", lang:"DE", f:"HF200/Schematics/721 22 20A Kameragehäuse komplett (1).pdf"},
+
   /* ===== COSMIC C120 ===== */
   {m:["cos_c120"], k:"manual", t:"C120 manual — crawler, cameras, FA E cutter, UV-LED, maintenance plans", pn:"22596", lang:"EN", f:"C120/Manuals/22596_C120 manual.pdf", note:"Cutter: B2 (STE FA E panel B2.2, lubrication B2.7, FE-1 controller LEDs B2.8). Maintenance plans: C5. Master cable pinout: A15.2.", check:"Put the PDF in Cosmic\\C120\\Manuals next to the app."},
 
@@ -655,6 +673,25 @@ const MAKER_ICONS = {
 
 /* ---------- TECH DATA per model (only from manuals — never guessed) ---------- */
 const SPECS = {
+  str_hf200: { source:"Streicher user manual HF200 (II/2012), sections 2–9", rows:[
+    ["Pipe range","Internal diameter DN 200 – DN 600"],
+    ["Length, robot to swivel head","900 mm"],
+    ["Insertion into side inlet","400 – 500 mm"],
+    ["Weight","approx. 90 kg"],
+    ["Drive","All 4 wheels, electric"],
+    ["Milling motor","Hydraulic, 1.5 kW, 2100 rpm"],
+    ["Milling arm","Hydraulic movement, electric rotation (600°)"],
+    ["Hydraulic unit","4 kW, 3 x 400 V AC, 1450 rpm, 16 l/min, max. 130 bar, valves 24 V DC, tank 70 l"],
+    ["Hydraulic fluid","ZX50 (water miscible, fully synthetic) or Hydrostar HEP 46 (biodegradable)"],
+    ["Hydraulic pressure","High approx. 130 bar · Low approx. 30 bar (key) / 40 bar (valve, 3.3)"],
+    ["Hose drum rewind","60 / 70 bar (left-hand valve)"],
+    ["Oil temperature","Max. 80 °C"],
+    ["Compressor","0.45 kW, 230 V, 49 l/min, 6 bar (max. 8 bar)"],
+    ["Robot pressurising / bracing air","2–3 bar (distribution cabinet), robot reduced to 1 bar, alarm below 2 bar"],
+    ["Water tank","Max. 6 bar"],
+    ["Travel motor voltage","Approx. +60 V forward / −60 V back; reel in at −65 to −75 V DC"],
+    ["Camera","1/4\" CCD colour, 6 – 7.5 V, 2.5 mm lens, swivel 135°"],
+    ["Generator","3 x 230 V and 1 x 400 V, 13.5 kVA at 1450 rpm"] ]},
   cos_c120: { source:"Cosmic C120 manual 22596 + TDK label in STE FA E", rows:[
     ["Cutter system","24167 Cosmic C120 FA E"],
     ["Cutter motor","26880 Cosmic FM E 3 kW"],
@@ -673,6 +710,7 @@ const SPECS = {
 const MACHINE_FIELDS = {
   _default: [["head","Camera head / tool","model · SN"],["length","Cable / hose length",""],["fw","Firmware",""]],
   cos_c120: [["stefae","STE FA E serial",""],["psu","TDK PSU serial / date","GEN100-33-1P230"],["motor","Cutter motor serial","26880 FM E 3 kW"],["hours","Operating hours",""]],
+  str_hf200:[["vehicle","Vehicle / reg. no.",""],["hours","Hydraulic unit hours","oil change approx. every 1000 h"],["oil","Hydraulic fluid","ZX50 or HEP 46"],["wheels","Wheel set / pipe size","DN 200 – 600"]],
   t3pc:     [["reel","Reel length","22 / 60 / 100 m"],["head","Camera head","model · SN"],["duc1","DUC-1 firmware","library V0.9"],["prcc2","PRCC-2 firmware","library V1.3"]]
 };
 
@@ -725,6 +763,31 @@ const TREES = {
     }}
   ],
   cutter: [
+    { id:"str_power", maker:"streicher", title:"HF200: milling motor slow / no power", icon:"motor", tree:{
+      q:"Is 'High pressure hydraulics' switched on?", hint:"Low pressure (approx. 30 bar) only moves the arms slowly; the milling motor turns slowly or not at all (manual 7.1).",
+      no:{ fix:["Switch on 'High pressure hydraulics' (approx. 130 bar). The milling motor starts and the arm moves faster.", "Right-hand hydraulic valve on the unit: slide to the back = high pressure 130 bar, to the front = low pressure 40 bar (3.3)."]},
+      yes:{ q:"Is the 'hydraulic oil level' warning light on?",
+        yes:{ fix:["Top up hydraulic fluid (ZX50 or Hydrostar HEP 46) through the filler neck with oil filter.", "If the pump has drawn air: run the hose package out and run the robot 5 min on LOW pressure to deaerate (3.4).", "Never go to high pressure before deaerating — an oil/air mix can ignite and burst the hose (3.4)."]},
+        no:{ q:"Is the oil filter display (red cap on the filler neck) in the red zone?",
+          yes:{ fix:["Replace the oil filter: unscrew the lid, bend up the wire clip, take out the filter element (3.4)."]},
+          no:{ fix:["Check the oil temperature — max. 80 °C (3.4).", "Check the hydraulic unit and hoses for leaks.", "Check the hydraulic couplings. After switching off, wait approx. 10 min before connecting them (pressure bleeds off through the return valves, 3.4).", "Check the hydraulic motor on the robot — see the 'Demontage-Mont. von Hydraulikmotor' photo set."]}
+        }
+      }
+    }},
+    { id:"str_travel", maker:"streicher", title:"HF200: robot won't travel / reel-in stops", icon:"wheel", tree:{
+      q:"Is the green LED (left row, no. 1, supply +12V) lit on the robot cover?", hint:"LED layout: manual 9.6.",
+      no:{ fix:["No supply to the robot electronics.", "Check the 24V and 12V protection switches.", "Check the 5x supply line and hose drum for damage.", "Check the indicator 'Electrical voltage / travel milling robot' on the distribution cabinet."]},
+      yes:{ q:"Does the 'Robot travelling' LED (left row, no. 3) light when you drive?",
+        no:{ fix:["The travel command is not reaching the robot — check the operator console and the distribution cabinet.", "For control from the rear: 'Robot release at the rear' must be active (7.1)."]},
+        yes:{ q:"Does the indicator show approx. ±60 V while driving, but the robot slips or stands still?", hint:"Error 'Reeling in terminated – Robot is at a standstill / slipping' (7.2).",
+          yes:{ fix:["Slippery pipe: rinse the pipe.", "Fit the bracing device (4 x M6) and inflate it with F4; air pressure is set at the distribution cabinet (9.4).", "Check the robot pressurising air: 2–3 bar at the distribution cabinet (4.2).", "Check the wheel set matches the pipe diameter.", "Press ACK to clear the message."]},
+          no:{ fix:["Check the travel motor and gear — see 'Removal of the drive motor' (9.7).", "When reeling in, set the drum so the indicator reads −65 to −75 V DC. Pulling harder for long damages the travel motor gear (7.2).", "Error 'Reeling in terminated – robot not being pulled in': the robot moved back faster than the drum. Press ACK and reel in slower."]}
+        }
+      }
+    }},
+    { id:"str_leds", maker:"streicher", title:"HF200: check functions with the cover LEDs", icon:"arm", tree:{
+      fix:["Left row: 1 green = supply +12V · 2 red = camera lighting · 3 red/green = robot travelling · 4 red/green = swivel milling arm left/right · 5 red/green = swivel camera up/down.", "Right row: 1 extra lighting · 2 rinse milling cutter · 3 rinse camera · 4 lower arm · 5 raise arm · 6 milling head to rear · 7 milling head to front (all red).", "Operate each function from the console and watch its LED. LED lights but nothing moves = fault on the robot side (valve, motor, mechanics). No LED = command or supply not reaching the robot.", "Note: the arm valves have deliberate play — the arm creeps slightly up in normal use and lowers by itself within approx. 1 h if the cable breaks (9.2).", "Before every job, do the function check in 9.8."]
+    }},
     { id:"cos_fe1", maker:"cosmic", title:"C120: FE-1 controller warning LED / cutter stops", icon:"motor", tree:{
       q:"Is the 'operating voltage OK' LED lit on the FE-1 controller?", hint:"LEDs on top of the controller on the cutter unit. Manual B2.8 picture order: green, yellow, red, blue (blue = operating voltage OK).",
       no:{ q:"Does the STE FA E voltmeter show cutter motor voltage (42–100 V) with the cutter switched on?",
