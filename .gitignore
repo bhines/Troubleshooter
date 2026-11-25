@@ -4,3 +4,7 @@ Rico/
 IMS/
 Cosmic/
 Dancutter/
+
+# Old copies used as -Source for setup-docs.ps1, and its report
+old copies/
+setup-docs-report.txt
