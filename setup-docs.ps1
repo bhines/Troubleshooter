@@ -1,20 +1,27 @@
 ﻿<#
-  setup-docs.ps1 - creates the Troubleshooter document folders and shows which files are still missing.
+  setup-docs.ps1 - sorts your manuals and schematics into the folders the Troubleshooter app expects.
 
-  Put this script next to troubleshooter.html and run it:
-      powershell -ExecutionPolicy Bypass -File .\setup-docs.ps1
-  It creates the empty folders (Maker\Family\Model\Manuals | Schematics), then lists every document
-  that is not in place yet. Run it again whenever you have placed some files to see what is left.
-  It never moves, deletes or overwrites anything.
+  1. Put this script in the Troubleshooter folder, next to troubleshooter.html.
+  2. Run it once. It creates all the folders, plus an empty "Unsorted" folder.
+  3. Drop every PDF you find into Unsorted (subfolders are fine, any order, any mix).
+  4. Run it again. Every file the app knows is MOVED from Unsorted to its correct folder.
+     Files the app does not know stay in Unsorted (candidates to add to the app).
+  Repeat 3-4 as often as you like. It never deletes or overwrites anything.
 
-  Optional:  -SearchIn "C:\Users\me\OneDrive"   (one or more folders, comma-separated)
-  looks for the missing files by their exact file name in those folders and COPIES the ones it finds
-  into the right place. Files found more than once are not copied; the report lists them.
-  Results also go to setup-docs-report.txt.  Generated from DOCS in troubleshooter.html.
+  Run:   powershell -ExecutionPolicy Bypass -File .\setup-docs.ps1
+         (or right-click the file > Run with PowerShell)
+
+  File names are matched exactly, except that upper/lower case is ignored; the file gets the app's spelling.
+  If the same name is in Unsorted several times: identical copies -> one is moved, the extras stay;
+  different files -> none is moved, the report lists them so you can pick.
+
+  Optional:  -SearchIn "C:\Users\me\OneDrive","D:\"   also looks in those folders and COPIES matches.
+  Results go to setup-docs-report.txt.  Generated from DOCS in troubleshooter.html.
 #>
 param([string[]]$SearchIn)
 
-$root = $PSScriptRoot
+$root  = $PSScriptRoot
+$inbox = Join-Path $root 'Unsorted'
 
 $folders = @(
   'Cosmic',
@@ -157,52 +164,83 @@ $docs = @(
   'Rico\TINY\Shared\Schematics\Mechanikeinheit TINY PC-PLUS 9520.017287.pdf'
 )
 
-foreach ($f in $folders) {
+foreach ($f in $folders + 'Unsorted') {
   $p = Join-Path $root $f
   if (-not (Test-Path -LiteralPath $p)) { New-Item -ItemType Directory -Path $p | Out-Null }
 }
-Write-Host "Folders ready ($($folders.Count))."
+Write-Host "Folders ready ($($folders.Count)), plus Unsorted."
 
-$byName = @{}
-if ($SearchIn) {
-  foreach ($s in $SearchIn) {
-    $s = $s.Trim('"')
-    if (-not (Test-Path -LiteralPath $s -PathType Container)) { Write-Host "Not found, skipped: $s" -ForegroundColor Yellow; continue }
-    Write-Host "Searching $s ..."
-    Get-ChildItem -LiteralPath $s -Recurse -File -ErrorAction SilentlyContinue |
-      Where-Object { -not $_.FullName.StartsWith($root, [StringComparison]::OrdinalIgnoreCase) } | ForEach-Object {
-        $k = $_.Name.ToLowerInvariant()
-        if (-not $byName.ContainsKey($k)) { $byName[$k] = New-Object System.Collections.ArrayList }
-        [void]$byName[$k].Add($_.FullName)
-      }
-  }
+function Index($dir, $skipRoot) {
+  $h = @{}
+  Get-ChildItem -LiteralPath $dir -Recurse -File -ErrorAction SilentlyContinue |
+    Where-Object { -not ($skipRoot -and $_.FullName.StartsWith($root, [StringComparison]::OrdinalIgnoreCase)) } | ForEach-Object {
+      $k = $_.Name.ToLowerInvariant()
+      if (-not $h.ContainsKey($k)) { $h[$k] = New-Object System.Collections.ArrayList }
+      [void]$h[$k].Add($_.FullName)
+    }
+  return $h
 }
 
-$have = 0; $copied = 0
+# several files with one name: if they are all identical, any of them will do
+function PickOne($hits) {
+  if ($hits.Count -eq 1) { return $hits[0] }
+  $hashes = @($hits | ForEach-Object { (Get-FileHash -LiteralPath $_ -Algorithm SHA256).Hash } | Select-Object -Unique)
+  if ($hashes.Count -eq 1) { return $hits[0] }
+  return $null
+}
+
+$inIndex = Index $inbox $false
+$outIndex = @{}
+foreach ($s in @($SearchIn)) {
+  if (-not $s) { continue }
+  $s = $s.Trim('"')
+  if (-not (Test-Path -LiteralPath $s -PathType Container)) { Write-Host "Not found, skipped: $s" -ForegroundColor Yellow; continue }
+  Write-Host "Searching $s ..."
+  $i = Index $s $true
+  foreach ($k in $i.Keys) { if (-not $outIndex.ContainsKey($k)) { $outIndex[$k] = New-Object System.Collections.ArrayList }; $outIndex[$k].AddRange($i[$k]) }
+}
+
+$have = 0; $moved = 0; $copied = 0
 $missing = New-Object System.Collections.ArrayList
 $unsure  = New-Object System.Collections.ArrayList
 foreach ($d in $docs) {
   $dest = Join-Path $root $d
   if (Test-Path -LiteralPath $dest) { $have++; continue }
-  $hits = $byName[(Split-Path $d -Leaf).ToLowerInvariant()]
-  if ($hits -and $hits.Count -eq 1) { Copy-Item -LiteralPath $hits[0] -Destination $dest; $copied++ }
-  elseif ($hits) { [void]$unsure.Add("$d  <-  found $($hits.Count) times: " + ($hits -join ' | ')) }
-  else { [void]$missing.Add($d) }
+  $k = (Split-Path $d -Leaf).ToLowerInvariant()
+  $hits = $inIndex[$k]
+  if ($hits) {
+    $src = PickOne $hits
+    if ($src) { Move-Item -LiteralPath $src -Destination $dest; $moved++ }
+    else { [void]$unsure.Add("$d  <-  $($hits.Count) different files with this name: " + ($hits -join ' | ')) }
+    continue
+  }
+  $hits = $outIndex[$k]
+  if ($hits) {
+    $src = PickOne $hits
+    if ($src) { Copy-Item -LiteralPath $src -Destination $dest; $copied++ }
+    else { [void]$unsure.Add("$d  <-  $($hits.Count) different files with this name: " + ($hits -join ' | ')) }
+    continue
+  }
+  [void]$missing.Add($d)
 }
+
+$left = @(Get-ChildItem -LiteralPath $inbox -Recurse -File -ErrorAction SilentlyContinue | ForEach-Object { $_.FullName.Substring($inbox.Length + 1) } | Sort-Object)
 
 Write-Host ""
 Write-Host "Documents: $($docs.Count) in the app"
-Write-Host "  in place:  $have"
-if ($SearchIn) { Write-Host "  copied now: $copied" }
-if ($unsure.Count) { Write-Host "  found several times, not copied: $($unsure.Count)" -ForegroundColor Yellow }
-Write-Host "  missing:   $($missing.Count)" -ForegroundColor $(if ($missing.Count) { 'Yellow' } else { 'Green' })
-if ($missing.Count) { Write-Host ""; Write-Host "Still missing:" -ForegroundColor Yellow; $missing | ForEach-Object { Write-Host "  $_" } }
+Write-Host "  already in place:     $have"
+Write-Host "  moved from Unsorted:  $moved"
+if ($SearchIn) { Write-Host "  copied from search:   $copied" }
+if ($unsure.Count) { Write-Host "  same name, different files - pick by hand: $($unsure.Count)" -ForegroundColor Yellow }
+Write-Host "  still missing:        $($missing.Count)" -ForegroundColor $(if ($missing.Count) { 'Yellow' } else { 'Green' })
+Write-Host "Left in Unsorted (not known to the app, or extra copies): $($left.Count)"
 
 $report = Join-Path $root 'setup-docs-report.txt'
 $lines = @("setup-docs report  $(Get-Date -Format 'yyyy-MM-dd HH:mm')", "",
-  "MISSING ($($missing.Count)):") + ($missing | ForEach-Object { "  $_" }) +
-  @("", "FOUND SEVERAL TIMES, NOT COPIED ($($unsure.Count)) - pick the right one by hand:") + ($unsure | ForEach-Object { "  $_" })
+  "STILL MISSING ($($missing.Count)):") + ($missing | ForEach-Object { "  $_" }) +
+  @("", "SAME NAME, DIFFERENT FILES ($($unsure.Count)) - move the right one by hand:") + ($unsure | ForEach-Object { "  $_" }) +
+  @("", "LEFT IN UNSORTED ($($left.Count)) - not known to the app, or extra copies:") + ($left | ForEach-Object { "  $_" })
 Set-Content -LiteralPath $report -Value $lines -Encoding UTF8
 Write-Host ""
-Write-Host "Report: $report"
+Write-Host "Full list: $report"
 Read-Host "Press Enter to close"
