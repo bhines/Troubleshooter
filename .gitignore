@@ -1,0 +1,6 @@
+# Manufacturer manuals and schematics live in OneDrive and the claude.ai project, not in git
+*.pdf
+Rico/
+IMS/
+Cosmic/
+Dancutter/
