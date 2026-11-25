@@ -2,7 +2,7 @@
 
 Every file the app links to, grouped by folder (99 files). Layout: `<Maker>/<Family>/<Model>/Manuals` or `Schematics`. `Shared` holds documents used by several models of that family. File names are the manufacturers' originals and must match exactly, including upper/lower case and spaces.
 
-`setup-docs.ps1` builds these folders and copies the files from your old copies. The "was" line under each file is its old location.
+`setup-docs.ps1` creates these folders and lists which files are still missing. The "was" line under each file is where the app used to expect it, which may help you recognise it.
 
 ## Cosmic/C120/Manuals/
 

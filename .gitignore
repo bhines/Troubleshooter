@@ -5,6 +5,5 @@ IMS/
 Cosmic/
 Dancutter/
 
-# Old copies used as -Source for setup-docs.ps1, and its report
-old copies/
+# Report written by setup-docs.ps1
 setup-docs-report.txt
