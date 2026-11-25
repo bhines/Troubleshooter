@@ -1,6 +1,6 @@
 # Document checklist
 
-Every file the app links to, grouped by folder (99 files). Layout: `<Maker>/<Family>/<Model>/Manuals` or `Schematics`. `Shared` holds documents used by several models of that family. File names are the manufacturers' originals and must match exactly, including upper/lower case and spaces.
+Every file the app links to, grouped by folder (161 files). Layout: `<Maker>/<Family>/<Model>/Manuals` or `Schematics`. `Shared` holds documents used by several models of that family. File names are the manufacturers' originals and must match exactly, including upper/lower case and spaces.
 
 `setup-docs.ps1` creates these folders and an `Unsorted` folder. Drop PDFs into `Unsorted` (subfolders are fine), run it again, and it moves each known file to its place. The "was" line under each file is where the app used to expect it, which may help you recognise it.
 
@@ -249,3 +249,166 @@ Every file the app links to, grouped by folder (99 files). Layout: `<Maker>/<Fam
 
 - [ ] `PRCC-1 9800.020604.PDF`: PRCC-1 board — schematic (6 sheets, rev d) (9800.020604), DE  
   was: `Rico/TINY/Tiny PLUS/PRCC-1 9800.020604.PDF`
+
+## Rico/Crawler/FW100CT.2/Manuals/
+
+- [ ] `Instruction Manual Carriage FW100CT.2 EN V 1.1.pdf`: FW100CT.2 carriage instruction manual V1.1, EN  
+  was: `Unsorted/Rico/FW100CT.2/Instruction Manual Carriage FW100CT.2 EN V 1.1.pdf`
+- [ ] `Montageanleitung FW100 CT.2.docx`: FW100CT.2 assembly instructions, DE  
+  was: `Unsorted/Rico/FW100CT.2/Plans/Mechanik/Montageanleitung FW100 CT.2.docx`
+
+## Rico/Crawler/Shared/Manuals/
+
+- [ ] `Neigungsabgleich FW100 CT.pdf`: Tilt (inclination) calibration FW100CT, DE  
+  was: `Unsorted/Rico/FW100CT.2/Plans/Software- Abgleich und Programmieranleitung/Neigungsabgleich FW100 CT.pdf`
+- [ ] `Neigungsabgleich FW100 CT eng.docx`: Tilt (inclination) calibration FW100CT, EN  
+  was: `Unsorted/Rico/FW100CT.2/Plans/Software- Abgleich und Programmieranleitung/Neigungsabgleich FW100 CT eng.docx`
+- [ ] `Neigungsabgleich Kurzversion.pdf`: Tilt calibration — short version, DE  
+  was: `Unsorted/Rico/FW100CT.2/Plans/Software- Abgleich und Programmieranleitung/Neigungsabgleich Kurzversion.pdf`
+- [ ] `Inclination-measurement-calibration-factory-setting-V0_2-EN-19_05_2021-MS.pdf`: Inclination measurement calibration — factory setting V0.2 (05/2021), EN  
+  was: `Unsorted/Rico/Manualer/Inclination-measurement-calibration-factory-setting-V0_2-EN-19_05_2021-MS.pdf`
+- [ ] `Anleitung FW100CT ED-CAN Programmieren .docx`: Programming the FW100CT ED-CAN board, DE  
+  was: `Unsorted/Rico/FW100CT.2/Plans/Software- Abgleich und Programmieranleitung/Anleitung FW100CT ED-CAN Programmieren .docx`
+- [ ] `Anleitung FW100CT FW Controller Programmieren.docx`: Programming the FW100CT crawler controller, DE  
+  was: `Unsorted/Rico/FW100CT.2/Plans/Software- Abgleich und Programmieranleitung/Anleitung FW100CT FW Controller Programmieren.docx`
+- [ ] `ED-CANFW100CT 170921.hex`: Firmware: ED-CAN FW100CT (2017-09-21), HEX  
+  was: `Unsorted/Rico/FW100CT.2/Plans/Software- Abgleich und Programmieranleitung/ED-CANFW100CT 170921.hex`
+- [ ] `FW-Controller FW100CT 210325-Neigung behoben.hex`: Firmware: crawler controller FW100CT (2021-03-25, tilt fixed), HEX  
+  was: `Unsorted/Rico/FW100CT.2/Plans/Software- Abgleich und Programmieranleitung/FW-Controller FW100CT 210325-Neigung behoben.hex`
+- [ ] `Use this Hookplate instead.txt`: Lifting the crawler: use the hook plate, EN  
+  was: `Unsorted/Rico/FW100CT.2/Plans/How to hook it -not recommended-/Use this Hookplate instead.txt`
+- [ ] `Drehgelenk Messinggleitlager.pdf`: Swivel joint with brass plain bearing — disassembly (9113.020429), DE  
+  was: `Unsorted/Rico/FW100CT.2/Plans/Mechanik/9113.020429 Knickgelenk zerlegen/Drehgelenk Messinggleitlager.pdf`
+
+## Rico/Crawler/Shared/Schematics/
+
+- [ ] `9113.018081  FW100CT.1-.2.pdf`: FW100CT.1 / .2 crawler drawing (9113.018081), DE  
+  was: `Unsorted/Rico/FW100CT.2/Plans/Mechanik/9113.018081  FW100CT.1-.2.pdf`
+- [ ] `Drehgelenk FW100CT.1-2 komplett 9113.018077.pdf`: Swivel joint FW100CT.1/.2 complete (9113.018077), DE  
+  was: `Unsorted/Rico/FW100CT.2/Plans/Mechanik/Drehgelenk FW100CT.1-2 komplett 9113.018077.pdf`
+- [ ] `Drehgelenk CT.1.pdf`: Swivel joint CT.1, DE  
+  was: `Unsorted/Rico/FW100CT.2/Plans/Mechanik/Drehgelenk CT.1.pdf`
+- [ ] `Schaltplan FW100CT Hauptplatine.PDF`: FW100CT main board — schematic, DE  
+  was: `Unsorted/Rico/FW100CT.2/Plans/Elektronik/Schaltplan FW100CT Hauptplatine.PDF`
+- [ ] `Schaltplan Platine Spannungsbegrenzung 9800.018109.PDF`: Voltage limiter board — schematic (9800.018109), DE  
+  was: `Unsorted/Rico/FW100CT.2/Plans/Elektronik/Schaltplan Platine Spannungsbegrenzung 9800.018109.PDF`
+- [ ] `Verdrahtungsplan SR50 Kameraanschluss CAN.pdf`: SR50 camera connection via CAN — wiring, DE  
+  was: `Unsorted/Rico/FW100CT.2/Plans/Elektronik/Verdrahtungsplan SR50 Kameraanschluss CAN.pdf`
+
+## Rico/Crawler/FW100CT.2/Schematics/
+
+- [ ] `FW100CT.2.pdf`: FW100CT.2 drawing, DE  
+  was: `Unsorted/Rico/FW100CT.2/Plans/Mechanik/FW100CT.2.pdf`
+- [ ] `FW100CT.2 radachsen.pdf`: FW100CT.2 wheel axles, DE  
+  was: `Unsorted/Rico/FW100CT.2 radachsen.pdf`
+- [ ] `left cover.pdf`: Left cover, EN  
+  was: `Unsorted/Rico/FW100CT.2/Plans/Mechanik/left cover.pdf`
+- [ ] `right cover.pdf`: Right cover, EN  
+  was: `Unsorted/Rico/FW100CT.2/Plans/Mechanik/right cover.pdf`
+- [ ] `wheel adaptor complete CT.2 upgrade.pdf`: Wheel adaptor complete — CT.2 upgrade, EN  
+  was: `Unsorted/Rico/FW100CT.2/Plans/Mechanik/wheel adaptor complete CT.2 upgrade.pdf`
+- [ ] `Radachsenadapter HUB100Ct.2 an FW100 9134.018905.pdf`: Wheel axle adapter HUB100CT.2 to FW100 (9134.018905), DE  
+  was: `Unsorted/Rico/FW100CT.2/Plans/Radachsenadapter HUB100Ct.2 an FW100 9134.018905.pdf`
+
+## Rico/Elevator/HUB100CT.1/Manuals/
+
+- [ ] `Bedienungsanleitung Hub 100CT.1 Version 1.0 EN.pdf`: HUB100CT.1 operating manual V1.0, EN  
+  was: `Unsorted/Rico/Bedienungsanleitung Hub 100CT.1 Version 1.0 EN.pdf`
+- [ ] `Bedienungsanleitung DE HUB100CT.1 Version 1.3.pdf`: HUB100CT.1 operating manual V1.3, DE  
+  was: `Unsorted/Rico/Bedienungsanleitung DE HUB100CT.1 Version 1.3.pdf`
+- [ ] `Anhang Hub 100CT.1 Version 1.0.pdf`: HUB100CT.1 manual appendix V1.0, DE  
+  was: `Unsorted/Rico/Anhang Hub 100CT.1 Version 1.0.pdf`
+
+## Rico/Elevator/HUB100CT.1/Schematics/
+
+- [ ] `Hub100CT.1.pdf`: HUB100CT.1 drawing, DE  
+  was: `Unsorted/Rico/FW100CT.2/HUB100CT.1-2-E/Hub100CT.1.pdf`
+
+## Rico/Elevator/HUB100CT.2/Manuals/
+
+- [ ] `Instruction Manual Elevator 100CT.2 V 1.0 EN.pdf`: Elevator 100CT.2 instruction manual V1.0, EN  
+  was: `Unsorted/Rico/FW100CT.2/Instruction Manual Elevator 100CT.2 V 1.0 EN.pdf`
+
+## Rico/Elevator/HUB100CT.2/Schematics/
+
+- [ ] `HUB100CT.2.pdf`: HUB100CT.2 drawing, DE  
+  was: `Unsorted/Rico/FW100CT.2/HUB100CT.1-2-E/HUB100CT.2.pdf`
+- [ ] `Verdrahtung HUB100CT.2.pdf`: HUB100CT.2 wiring, DE  
+  was: `Unsorted/Rico/FW100CT.2/HUB100CT.1-2-E/Verdrahtung HUB100CT.2.pdf`
+
+## Rico/Elevator/HUB100CT.E/Manuals/
+
+- [ ] `Operating manual elevator 100CT.E V1.1 EN.pdf`: Elevator 100CT.E operating manual V1.1, EN  
+  was: `Unsorted/Rico/FW100CT.2/Operating manual elevator 100CT.E V1.1 EN.pdf`
+
+## Rico/Elevator/HUB100CT.E/Schematics/
+
+- [ ] `HUB100CT.E.pdf`: HUB100CT.E drawing, DE  
+  was: `Unsorted/Rico/FW100CT.2/HUB100CT.1-2-E/HUB100CT.E.pdf`
+- [ ] `HUB100CT.E Mechanikeinheit 9134.019975.pdf`: HUB100CT.E mechanics unit (9134.019975), DE  
+  was: `Unsorted/Rico/FW100CT.2/HUB100CT.1-2-E/HUB100CT.E Mechanikeinheit 9134.019975.pdf`
+- [ ] `Hub100CT.E Stückliste 9134.019975.pdf`: HUB100CT.E parts list (9134.019975), DE  
+  was: `Unsorted/Rico/FW100CT.2/HUB100CT.1-2-E/Hub100CT.E Stückliste 9134.019975.pdf`
+- [ ] `HUB 100CT.E Parts.idw.pdf`: HUB100CT.E parts, EN  
+  was: `Unsorted/Rico/FW100CT.2/HUB100CT.1-2-E/HUB 100CT.E Parts.idw.pdf`
+- [ ] `HUB100CT.E Verdrahtungsplan.pdf`: HUB100CT.E wiring diagram, DE  
+  was: `Unsorted/Rico/FW100CT.2/HUB100CT.1-2-E/HUB100CT.E Verdrahtungsplan.pdf`
+- [ ] `Drawing Ct.E.pdf`: Elevator CT.E drawing, EN  
+  was: `Unsorted/Rico/Drawing Ct.E.pdf`
+- [ ] `partlist elevator Ct.E.pdf`: Elevator CT.E parts list, EN  
+  was: `Unsorted/Rico/partlist elevator Ct.E.pdf`
+- [ ] `elevator mechanical drawing.pdf`: Elevator — mechanical drawing, EN  
+  was: `Unsorted/Rico/elevator mechanical drawing.pdf`
+
+## Rico/Elevator/Shared/Schematics/
+
+- [ ] `Getriebeeinheit 9134.020244.pdf`: Gear unit (9134.020244), DE  
+  was: `Unsorted/Rico/FW100CT.2/HUB100CT.1-2-E/Getriebeeinheit 9134.020244.pdf`
+- [ ] `Locking Pin 9134.020398.pdf`: Locking pin (9134.020398), EN  
+  was: `Unsorted/Rico/FW100CT.2/HUB100CT.1-2-E/Locking Pin 9134.020398.pdf`
+- [ ] `Winkelstück 9134.020533.pdf`: Angle piece (9134.020533), DE  
+  was: `Unsorted/Rico/FW100CT.2/HUB100CT.1-2-E/Winkelstück 9134.020533.pdf`
+- [ ] `Verdrahtungsplan Winkelstück 9134.020533.pdf`: Angle piece — wiring (9134.020533), DE  
+  was: `Unsorted/Rico/FW100CT.2/HUB100CT.1-2-E/Verdrahtungsplan Winkelstück 9134.020533.pdf`
+
+## Rico/Highlander/MTS-ED control unit/Manuals/
+
+- [ ] `Kurzanleitung Highlander Bedienfeld EN V1.1.pdf`: HIGHLANDER control panel — quick guide V1.1, EN  
+  was: `Unsorted/Rico/Highlander/Kurzanleitung Highlander Bedienfeld EN V1.1.pdf`
+- [ ] `Kurzanleitung Highlander Bedienfeld DE V1.1..pdf`: HIGHLANDER control panel — quick guide V1.1, DE  
+  was: `Unsorted/Rico/Kurzanleitung Highlander Bedienfeld DE V1.1..pdf`
+- [ ] `Kurzanleitung Highlander Eingabe FW Räder EN V 1.3.pdf`: HIGHLANDER: entering crawler wheels — quick guide V1.3, EN  
+  was: `Unsorted/Rico/Highlander/Kurzanleitung Highlander Eingabe FW Räder EN V 1.3.pdf`
+- [ ] `Kurzanleitung Highlander Eingabe FW Räder DE V 1.2.pdf`: HIGHLANDER: entering crawler wheels — quick guide V1.2, DE  
+  was: `Unsorted/Rico/Kurzanleitung Highlander Eingabe FW Räder DE V 1.2.pdf`
+- [ ] `Kurzanleitung Highlander Rückraumfernbedienung EN V1.1..pdf`: HIGHLANDER rear-compartment remote — quick guide V1.1, EN  
+  was: `Unsorted/Rico/Highlander/Kurzanleitung Highlander Rückraumfernbedienung EN V1.1..pdf`
+- [ ] `Kurzanleitung Highlander Rückraumfernbedienung DE V1.1.pdf`: HIGHLANDER rear-compartment remote — quick guide V1.1, DE  
+  was: `Unsorted/Rico/Kurzanleitung Highlander Rückraumfernbedienung DE V1.1.pdf`
+- [ ] `Prüfanweisung Platine MTSVERSx.pdf`: Test instruction — MTSVERSx board, DE  
+  was: `Unsorted/Rico/Prüfanweisung Platine MTSVERSx.pdf`
+- [ ] `Prüfaufbau Platinenprüfung MTSERS.pdf`: Test setup — MTSVERS board, DE  
+  was: `Unsorted/Rico/Prüfaufbau Platinenprüfung MTSERS.pdf`
+
+## Rico/Highlander/MTS-ED control unit/Schematics/
+
+- [ ] `MTS CONTROL-UNIT.pdf`: MTS control unit, EN  
+  was: `Unsorted/Rico/MTS CONTROL-UNIT.pdf`
+- [ ] `MTS-ED 19 Steuereinheit Baumstruktur.pdf`: MTS-ED 19" control unit — structure, DE  
+  was: `Unsorted/Rico/MTS-ED 19 Steuereinheit Baumstruktur.pdf`
+- [ ] `Gesamtverdrahtung MTS-ED.pdf`: MTS-ED overall wiring, DE  
+  was: `Unsorted/Rico/Gesamtverdrahtung MTS-ED.pdf`
+- [ ] `Gesamtverdrahtung (MD-Anschluß) MTS-ED.pdf`: MTS-ED overall wiring (MD connection), DE  
+  was: `Unsorted/Rico/Gesamtverdrahtung (MD-Anschluß) MTS-ED.pdf`
+- [ ] `Montageplan MTS-ED komplett montiert und verdrahtet ohne PLa.pdf`: MTS-ED assembly — complete, wired, DE  
+  was: `Unsorted/Rico/Montageplan MTS-ED komplett montiert und verdrahtet ohne PLa.pdf`
+- [ ] `Montageplan Rahmenaufbau MTS-ED.pdf`: MTS-ED frame assembly, DE  
+  was: `Unsorted/Rico/Montageplan Rahmenaufbau MTS-ED.pdf`
+- [ ] `Verdrahtungsplan Rahmenaufbau MTS-ED.pdf`: MTS-ED frame — wiring, DE  
+  was: `Unsorted/Rico/Verdrahtungsplan Rahmenaufbau MTS-ED.pdf`
+- [ ] `Verdrahtungsplan Frontplatte MTS-ED.pdf`: MTS-ED front panel — wiring, DE  
+  was: `Unsorted/Rico/Verdrahtungsplan Frontplatte MTS-ED.pdf`
+- [ ] `MTS Platine Schalt- und Layout MTS-versorgung.pdf`: MTS supply board — schematic & layout, DE  
+  was: `Unsorted/Rico/MTS Platine Schalt- und Layout MTS-versorgung.pdf`
+- [ ] `Schaltpan und Layout Platine MTSVERSx.pdf`: MTSVERSx board — schematic & layout, DE  
+  was: `Unsorted/Rico/Schaltpan und Layout Platine MTSVERSx.pdf`
