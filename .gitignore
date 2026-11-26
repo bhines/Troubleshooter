@@ -4,7 +4,13 @@ Rico/
 IMS/
 Cosmic/
 Dancutter/
+Streicher/
 
 # setup-docs.ps1: drop folder and report
 setup-docs-report.txt
 Unsorted/
+
+# Local leftovers from the move to git
+HANDOFF-claude-code.md
+Troubleshooter.orig.html
+Troubleshooter.md

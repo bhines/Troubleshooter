@@ -12,7 +12,7 @@ Offline field app for a technician repairing push-rod inspection cameras (Rico) 
 
 ## Where things live
 - Code: this repo (`bhines/Troubleshooter`).
-- Manuals and schematics (PDF): OneDrive, in folders `Rico/ IMS/ Cosmic/ Dancutter/` next to the HTML. Copies are in the claude.ai project "Troubleshooter". They are not in git.
+- Manuals and schematics (PDF): OneDrive (`E:\OneDrive - Serwent\Bård\Troubleshooter`, which is also a clone of this repo), in folders `Rico/ IMS/ Cosmic/ Dancutter/ Streicher/` next to the HTML. Copies are in the claude.ai project "Troubleshooter". They are not in git.
 - Published app: claude.ai artifact "Troubleshooter" (https://claude.ai/artifact/MSJHGv7BkmEzYrA7Kh9EVe). Keep it in sync with `main`.
 
 ## Check before committing
